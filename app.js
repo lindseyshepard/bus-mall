@@ -1,6 +1,6 @@
 'use strict';
 
-var allProducts = [];
+//var allProducts = [];
 
 function ProductSelection(productItem, imageSrc) {
     this.productItem = productItem;
@@ -8,8 +8,14 @@ function ProductSelection(productItem, imageSrc) {
     this.clickCount = 0;
     this.renderedCount = 1;
 
-    allProducts.push(this);
+    ProductSelection.allProducts.push(this);
 }
+
+ProductSelection.allProducts = new Array;
+//ProductSelection.totalvotes = 0; -> thisis from Ashleys code. Fine out how to use this variable to keep track of total votes per item
+
+
+
 console.log(allProducts);
 
 ProductSelection.prototype.render = function() {
