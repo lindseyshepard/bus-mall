@@ -12,7 +12,6 @@ function ProductSelection(productItem, imageSrc) {
 }
 console.log(allProducts);
 
-
 ProductSelection.prototype.render = function() {
 
     var target = document.getElementById('allItems');
@@ -21,6 +20,7 @@ ProductSelection.prototype.render = function() {
     var newP = document.createElement('p');
     newP.textContext = 'Clicks: ' + this.clickCount;
     this.renderedCount++;
+    console.log(this.renderedCount);
 
     var newImg = document.createElement('img');
     newImg.src = this.imageSrc;
