@@ -6,6 +6,7 @@ function ProductSelection(productItem, imageSrc) {
     this.productItem = productItem;
     this.imageSrc = imageSrc;
     this.clickCount = 0;
+    this.renderedCount = 1;
 
     allProducts.push(this);
 }
@@ -19,7 +20,7 @@ ProductSelection.prototype.render = function() {
     var newLi = document.createElement('li');
     var newP = document.createElement('p');
     newP.textContext = 'Clicks: ' + this.clickCount;
-
+    this.renderedCount++;
 
     var newImg = document.createElement('img');
     newImg.src = this.imageSrc;
@@ -28,8 +29,8 @@ ProductSelection.prototype.render = function() {
     newLi.appendChild(newImg);
     newLi.appendChild(newP);
     target.appendChild(newLi);
-    console.log(newImg.id);
 
+    console.log(this.productItem + ' Displayed : ' + this.renderedCount + ', Times Selected : ' + this.clickCount);
 }
 
 var clicks = 1;
@@ -37,7 +38,7 @@ var clicks = 1;
 function handlesClicksOnImg(event) {
     console.log(event);
     if (clicks < 25) {
-        console.log('You clicked me ' + clicks);
+        console.log('You clicked ' + clicks + ' times!');
         clicks++;
 
         console.log(event.target);
@@ -45,18 +46,20 @@ function handlesClicksOnImg(event) {
         for (var i = 0; i < allProducts.length; i++) {
 
 
-            if (event.target.src === allProducts[i].imageSrc) {
+            if (event.target.id === allProducts[i].productItem) {
                 allProducts[i].clickCount++;
                 console.log(' Clicks ' + allProducts[i].clickCount);
             }
         }
-        // if (event.target.id === "img/assets/boots.jpg") {
-        //     boots.clickCount++;
-        //     console.log('you clicked on the boots');
-        // }
+
 
         productsOnPage();
     }
+
+    // TO DO console.log the productItems with amount of clicks
+    // calculate the percentages of items that were clicked.
+    // how many times were each product was shown and then clicked
+
 }
 
 function productsOnPage() {
@@ -73,11 +76,8 @@ function productsOnPage() {
 
 }
 
-
 var ulEl = document.getElementById('allItems');
 ulEl.addEventListener('click', handlesClicksOnImg);
-
-
 
 
 
@@ -90,66 +90,27 @@ ulEl.addEventListener('click', handlesClicksOnImg);
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 //Tests
-var banana = new ProductSelection('allItems', 'img/assets/banana.jpg');
-var bathroom = new ProductSelection('allItems', 'img/assets/bathroom.jpg');
-var breakfast = new ProductSelection('allItems', 'img/assets/breakfast.jpg');
-var bag = new ProductSelection('allItems', 'img/assets/bag.jpg')
-var boots = new ProductSelection('allItems', 'img/assets/boots.jpg')
-var bubblegum = new ProductSelection('allItems', 'img/assets/bubblegum.jpg')
-var chair = new ProductSelection('allItems', 'img/assets/chair.jpg')
-var cthulhu = new ProductSelection('allItems', 'img/assets/cthulhu.jpg')
-var dogDuck = new ProductSelection('allItems', 'img/assets/dog-duck.jpg')
-var dragon = new ProductSelection('allItems', 'img/assets/dragon.jpg')
-var pen = new ProductSelection('allItems', 'img/assets/pen.jpg')
-var petSweep = new ProductSelection('allItems', 'img/assets/pet-sweep.jpg')
-var scissors = new ProductSelection('allItems', 'img/assets/scissors.jpg')
-var shark = new ProductSelection('allItems', 'img/assets/shark.jpg')
-var sweep = new ProductSelection('allItems', 'img/assets/sweep.png')
-var tauntaun = new ProductSelection('allItems', 'img/assets/tauntaun.jpg')
-var unicorn = new ProductSelection('allItems', 'img/assets/unicorn.jpg')
-var usb = new ProductSelection('allItems', 'img/assets/usb.gif')
-var waterCan = new ProductSelection('allItems', 'img/assets/water-can.jpg')
-var wineGlass = new ProductSelection('allItems', 'img/assets/wine-glass.jpg')
-
-
-
-
-
-
-
-
-
-
-
+var banana = new ProductSelection('banana', 'img/assets/banana.jpg');
+var bathroom = new ProductSelection('bathroom', 'img/assets/bathroom.jpg');
+var breakfast = new ProductSelection('breakfast', 'img/assets/breakfast.jpg');
+var bag = new ProductSelection('bag', 'img/assets/bag.jpg')
+var boots = new ProductSelection('boots', 'img/assets/boots.jpg')
+var bubblegum = new ProductSelection('bubblegum', 'img/assets/bubblegum.jpg')
+var chair = new ProductSelection('chair', 'img/assets/chair.jpg')
+var cthulhu = new ProductSelection('cthulhu', 'img/assets/cthulhu.jpg')
+var dogDuck = new ProductSelection('dogDuck', 'img/assets/dog-duck.jpg')
+var dragon = new ProductSelection('dragon', 'img/assets/dragon.jpg')
+var pen = new ProductSelection('pen', 'img/assets/pen.jpg')
+var petSweep = new ProductSelection('petSweep', 'img/assets/pet-sweep.jpg')
+var scissors = new ProductSelection('scissors', 'img/assets/scissors.jpg')
+var shark = new ProductSelection('shark', 'img/assets/shark.jpg')
+var sweep = new ProductSelection('sweep', 'img/assets/sweep.png')
+var tauntaun = new ProductSelection('tauntaun', 'img/assets/tauntaun.jpg')
+var unicorn = new ProductSelection('unicorn', 'img/assets/unicorn.jpg')
+var usb = new ProductSelection('usb', 'img/assets/usb.gif')
+var waterCan = new ProductSelection('waterCan', 'img/assets/water-can.jpg')
+var wineGlass = new ProductSelection('wineGlass', 'img/assets/wine-glass.jpg')
 
 
 productsOnPage();
