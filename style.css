@@ -18,11 +18,11 @@ img {
 }
 
 body {
-    background: radial-gradient(#18ad31, #fff) fixed;
+    background: radial-gradient(#be82a7, rgb(235, 226, 148)) fixed;
 }
 
 header {
-    background: #18ad3155;
+    background: #0b4d1655;
     width: 100%;
 }
 
@@ -80,7 +80,7 @@ li {
 }
 
 footer {
-    background: #18ad3155;
+    background: #0b4e1655;
     width: 100%;
     height: 100px;
     clear: both;
