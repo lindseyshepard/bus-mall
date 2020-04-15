@@ -125,72 +125,72 @@ function findThreeUnique() {
 }
 
 
-function makeChart() {
-    var ctx = document.getElementById('canvaschart').getContext('2d');
+// function makeChart() {
+//     var ctx = document.getElementById('canvaschart').getContext('2d');
 
 
-    var namesOfProducts = [];
+//     var namesOfProducts = [];
 
-    for (var i = 0; i < ProductSelection.allProducts.length; i++) {
-        namesOfProducts.push(ProductSelection.allProducts[i].productItem);
-    }
-
-
-
-    var clicks = [];
-    for (i = 0; i < ProductSelection.allProducts.length; i++) {
-        clicks.push(ProductSelection.allProducts[i].clickCount);
-    }
-    console.log(clicks);
-    console.log(namesOfProducts);
-
-    // =========== (mostly) boilerplate code from chartjs =============
-    new Chart(ctx, {
-
-
-        // The type of chart we want to create
-        type: 'bar',
-
-        // The data for our dataset
-        data: {
-            labels: namesOfProducts,
-            datasets: [{
-                    label: 'namesOfProducts',
-                    backgroundColor: 'rgb(255, 99, 132, 0.4)',
-                    borderColor: 'rgb(255, 99, 132)',
-                    // this data === the datapoints
-                    data: clicks
-                },
-                {
-                    // TODO: make this the times seen data
-                    label: 'All Products Available Seen',
-                    backgroundColor: 'rgb(30, 99, 132, 0.4)',
-                    borderColor: 'rgb(30, 99, 132)',
-                    // this data === the datapoints
-                    data: [20, 15, 2, 4]
-                }
-            ]
-        },
-
-        // Configuration options go here
-        options: {
-            scales: {
-                xAxes: [{
-                    stacked: true
-                }],
-                yAxes: [{
-                    stacked: true
-                }]
-            }
-        }
-    });
-
-    console.log(namesOfProducts);
-}
+//     for (var i = 0; i < ProductSelection.allProducts.length; i++) {
+//         namesOfProducts.push(ProductSelection.allProducts[i].productItem);
+//     }
 
 
 
-makeChart();
+//     var clicks = [];
+//     for (i = 0; i < ProductSelection.allProducts.length; i++) {
+//         clicks.push(ProductSelection.allProducts[i].clickCount);
+//     }
+//     console.log(clicks);
+//     console.log(namesOfProducts);
+
+//     // =========== (mostly) boilerplate code from chartjs =============
+//     new Chart(ctx, {
+
+
+//         // The type of chart we want to create
+//         type: 'pie',
+
+//         // The data for our dataset
+//         data: {
+//             labels: namesOfProducts,
+//             datasets: [{
+//                     label: 'namesOfProducts',
+//                     backgroundColor: 'rgb(255, 99, 132, 0.4)',
+//                     borderColor: 'rgb(255, 99, 132)',
+//                     // this data === the datapoints
+//                     data: clicks
+//                 },
+//                 {
+//                     // TODO: make this the times seen data
+//                     label: 'All Products Available Seen',
+//                     backgroundColor: 'rgb(30, 99, 132, 0.4)',
+//                     borderColor: 'rgb(30, 99, 132)',
+//                     // this data === the datapoints
+//                     data: [20, 15, 2, 4]
+//                 }
+//             ]
+//         },
+
+//         // Configuration options go here
+//         options: {
+//             scales: {
+//                 xAxes: [{
+//                     stacked: true
+//                 }],
+//                 yAxes: [{
+//                     stacked: true
+//                 }]
+//             }
+//         }
+//     });
+
+//     console.log(namesOfProducts);
+// }
+
+
+
+// makeChart();
 
 
 
