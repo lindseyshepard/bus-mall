@@ -39,7 +39,9 @@ ProductSelection.prototype.render = function() {
     target.appendChild(newLi);
 
     console.log(this.productItem + ' Displayed : ' + this.renderedCount + ', Times Selected : ' + this.clickCount);
+
 }
+
 
 var clicks = 1;
 
@@ -228,15 +230,15 @@ localStorage.setItem('allTheProductsBadString', ProductSelection.allProducts);
 
 // a variable that is gonna turn into a string wooot
 var allProductsThatHaveBeenMadeStringy = JSON.stringify(ProductSelection.allProducts);
-console.log('allProductsThatHaveBeenMadeStringy', allProductsThatHaveBeenMadeStringy);
-localStorage.setItem('productsFromLocalStorage', actualJavaScriptProductArray);
+localStorage.setItem('productsFromLocalStorage', allProductsThatHaveBeenMadeStringy);
 
+console.log('allProductsThatHaveBeenMadeStringy', allProductsThatHaveBeenMadeStringy);
 
 // when we get it from local storage
 var productsFromLocalStorageStillAString = localStorage.getItem('productsFromLocalStorage');
-//var actualJavaScriptProductArray = JSON.parse(productsFromLocalStorageStillAString);
+var actualJavaScriptProductArray = JSON.parse(productsFromLocalStorageStillAString);
 
-console.log('productsFromLocalStorage, after being parsed ', actualJavaScriptProductArray);
+console.log('productsFromLocalStorage, after being parsed ', allProductsThatHaveBeenMadeStringy);
 
 
 
@@ -259,7 +261,7 @@ ProductSelection.allProducts = reInstantiatedProductItems;
 //rendering
 
 for (i = 0; ProductSelection.allProducts.length; i++) {
-    ProductSelection.allProducts[i].render();
+    allProducts.render();
 }
 
 
