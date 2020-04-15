@@ -1,5 +1,10 @@
 'use strict';
 
+
+var lastItemSeen = [];
+
+
+
 var allProducts = [];
 
 function ProductSelection(productItem, imageSrc) {
@@ -80,6 +85,39 @@ var ulEl = document.getElementById('allItems');
 ulEl.addEventListener('click', handlesClicksOnImg);
 
 
+
+function noRepeats() {
+
+    var threeProducts = [];
+    threeProducts.push(productsOnPage());
+    var secondProduct = productsOnPage();
+    while (threeProducts[0] === secondProduct || secondProduct === lastItemSeen[0] || secondProduct === lastItemSeen[1] || secondProduct === lastItemSeen[2]) {
+        var secondProduct = productsOnPage();
+    }
+    secondProduct.push(secondProduct);
+    var thirdProduct = productsOnPage();
+    while (threeProducts[1] === thirdProduct || threeProducts[0] === thirdProduct) {
+        var thirdProduct = productsOnPage();
+    }
+    thirdProduct.push(thirdProduct);
+    console.log(threeProducts);
+    lastItemSeen = threeProducts;
+    return threeProducts;
+}
+
+
+function findThreeUnique() {
+    var threeArray = productsOnPage();
+
+    // while (threeArray contains anything from lastItemSeen) {
+    //     threeArray = productsOnPage();
+    // }
+
+
+
+    return threeArray;
+
+}
 
 // LEFT TO DO
 // prevent repeats in the random generator.
