@@ -119,10 +119,73 @@ function findThreeUnique() {
 
 }
 
-// LEFT TO DO
-// prevent repeats in the random generator.
-// display 3 choices on the screen at a time
-// display the votes and percentages for the votes and images
+
+function makeChart() {
+    var ctx = document.getElementById('canvaschart').getContext('2d');
+
+
+    var namesOfProducts = [];
+
+    for (var i = 0; i < ProductSelection.allProducts.length; i++) {
+        namesOfProducts.push(ProductSelection.allProducts[i].productItem);
+    }
+    console.log(namesOfProducts);
+
+
+    var clicks = [];
+    for (i = 0; i < ProductSelection.allProducts.length; i++) {
+        clicks.push(ProductSelection.allProducts[i].clickCount);
+    }
+
+    // =========== (mostly) boilerplate code from chartjs =============
+    var myChart = new Chart(ctx, {
+        // The type of chart we want to create
+        type: 'pie',
+
+        // The data for our dataset
+        data: {
+            labels: namesOfProducts,
+            datasets: [{
+                    label: 'All Products Available Clicked',
+                    backgroundColor: 'rgb(255, 99, 132, 0.4)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    // this data === the datapoints
+                    data: clicks
+                },
+                {
+                    // TODO: make this the times seen data
+                    label: 'All Products Available Seen',
+                    backgroundColor: 'rgb(30, 99, 132, 0.4)',
+                    borderColor: 'rgb(30, 99, 132)',
+                    // this data === the datapoints
+                    data: [20, 15, 2, 4]
+                }
+            ]
+        },
+
+        // Configuration options go here
+        options: {
+            scales: {
+                xAxes: [{
+                    stacked: true
+                }],
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+}
+
+
+
+
+
+
+
+
 
 
 
