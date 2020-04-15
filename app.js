@@ -5,7 +5,7 @@ var lastItemSeen = [];
 
 
 
-var allProducts = [];
+
 
 function ProductSelection(productItem, imageSrc) {
     this.productItem = productItem;
@@ -13,9 +13,12 @@ function ProductSelection(productItem, imageSrc) {
     this.clickCount = 0;
     this.renderedCount = 1;
 
-    allProducts.push(this);
+    ProductSelection.allProducts.push(this);
 }
-console.log(allProducts);
+
+
+ProductSelection.allProducts = [];
+
 
 ProductSelection.prototype.render = function() {
 
@@ -126,27 +129,31 @@ function makeChart() {
 
     var namesOfProducts = [];
 
-    for (var i = 0; i < allProducts.length; i++) {
+    for (var i = 0; i < ProductSelection.allProducts.length; i++) {
         namesOfProducts.push(ProductSelection.allProducts[i].productItem);
     }
-    console.log(namesOfProducts);
+
 
 
     var clicks = [];
-    for (i = 0; i < allProducts.length; i++) {
+    for (i = 0; i < ProductSelection.allProducts.length; i++) {
         clicks.push(ProductSelection.allProducts[i].clickCount);
     }
+    console.log(clicks);
+    console.log(namesOfProducts);
 
     // =========== (mostly) boilerplate code from chartjs =============
-    var myChart = new Chart(ctx, {
+    new Chart(ctx, {
+
+
         // The type of chart we want to create
-        type: 'pie',
+        type: 'bar',
 
         // The data for our dataset
         data: {
             labels: namesOfProducts,
             datasets: [{
-                    label: 'All Products Available Clicked',
+                    label: 'namesOfProducts',
                     backgroundColor: 'rgb(255, 99, 132, 0.4)',
                     borderColor: 'rgb(255, 99, 132)',
                     // this data === the datapoints
@@ -170,13 +177,13 @@ function makeChart() {
                     stacked: true
                 }],
                 yAxes: [{
-                    ticks: {
-                        beginAtZero: true
-                    }
+                    stacked: true
                 }]
             }
         }
     });
+
+    console.log(namesOfProducts);
 }
 
 
@@ -190,28 +197,94 @@ makeChart();
 
 
 
-
 //Tests
-var banana = new ProductSelection('banana', 'img/assets/banana.jpg');
-var bathroom = new ProductSelection('bathroom', 'img/assets/bathroom.jpg');
-var breakfast = new ProductSelection('breakfast', 'img/assets/breakfast.jpg');
-var bag = new ProductSelection('bag', 'img/assets/bag.jpg')
-var boots = new ProductSelection('boots', 'img/assets/boots.jpg')
-var bubblegum = new ProductSelection('bubblegum', 'img/assets/bubblegum.jpg')
-var chair = new ProductSelection('chair', 'img/assets/chair.jpg')
-var cthulhu = new ProductSelection('cthulhu', 'img/assets/cthulhu.jpg')
-var dogDuck = new ProductSelection('dogDuck', 'img/assets/dog-duck.jpg')
-var dragon = new ProductSelection('dragon', 'img/assets/dragon.jpg')
-var pen = new ProductSelection('pen', 'img/assets/pen.jpg')
-var petSweep = new ProductSelection('petSweep', 'img/assets/pet-sweep.jpg')
-var scissors = new ProductSelection('scissors', 'img/assets/scissors.jpg')
-var shark = new ProductSelection('shark', 'img/assets/shark.jpg')
-var sweep = new ProductSelection('sweep', 'img/assets/sweep.png')
-var tauntaun = new ProductSelection('tauntaun', 'img/assets/tauntaun.jpg')
-var unicorn = new ProductSelection('unicorn', 'img/assets/unicorn.jpg')
-var usb = new ProductSelection('usb', 'img/assets/usb.gif')
-var waterCan = new ProductSelection('waterCan', 'img/assets/water-can.jpg')
-var wineGlass = new ProductSelection('wineGlass', 'img/assets/wine-glass.jpg')
+new ProductSelection('banana', 'img/assets/banana.jpg');
+new ProductSelection('bathroom', 'img/assets/bathroom.jpg');
+new ProductSelection('breakfast', 'img/assets/breakfast.jpg');
+new ProductSelection('bag', 'img/assets/bag.jpg')
+new ProductSelection('boots', 'img/assets/boots.jpg')
+new ProductSelection('bubblegum', 'img/assets/bubblegum.jpg')
+new ProductSelection('chair', 'img/assets/chair.jpg')
+new ProductSelection('cthulhu', 'img/assets/cthulhu.jpg')
+new ProductSelection('dogDuck', 'img/assets/dog-duck.jpg')
+new ProductSelection('dragon', 'img/assets/dragon.jpg')
+new ProductSelection('pen', 'img/assets/pen.jpg')
+new ProductSelection('petSweep', 'img/assets/pet-sweep.jpg')
+new ProductSelection('scissors', 'img/assets/scissors.jpg')
+new ProductSelection('shark', 'img/assets/shark.jpg')
+new ProductSelection('sweep', 'img/assets/sweep.png')
+new ProductSelection('tauntaun', 'img/assets/tauntaun.jpg')
+new ProductSelection('unicorn', 'img/assets/unicorn.jpg')
+new ProductSelection('usb', 'img/assets/usb.gif')
+new ProductSelection('waterCan', 'img/assets/water-can.jpg')
+new ProductSelection('wineGlass', 'img/assets/wine-glass.jpg')
+
+
+
+
+
+console.log('local products', ProductSelection.allProducts);
+localStorage.setItem('allTheProductsBadString', ProductSelection.allProducts);
+
+// a variable that is gonna turn into a string wooot
+var allProductsThatHaveBeenMadeStringy = JSON.stringify(ProductSelection.allProducts);
+console.log('allProductsThatHaveBeenMadeStringy', allProductsThatHaveBeenMadeStringy);
+localStorage.setItem('productsFromLocalStorage', actualJavaScriptProductArray);
+
+
+// when we get it from local storage
+var productsFromLocalStorageStillAString = localStorage.getItem('productsFromLocalStorage');
+//var actualJavaScriptProductArray = JSON.parse(productsFromLocalStorageStillAString);
+
+console.log('productsFromLocalStorage, after being parsed ', actualJavaScriptProductArray);
+
+
+
+
+
+
+
+
+var reInstantiatedProductItems = [];
+for (var i = 0; i < actualJavaScriptProductArray.length; i++) {
+    var itemLS = actualJavaScriptProductArray[i].productItem;
+    var clicksLS = actualJavaScriptProductArray[i].clicks;
+
+    reInstantiatedProductItems.push(
+        new ProductSelection(itemLS, clicksLS)
+    );
+}
+ProductSelection.allProducts = reInstantiatedProductItems;
+
+//rendering
+
+for (i = 0; ProductSelection.allProducts.length; i++) {
+    ProductSelection.allProducts[i].render();
+}
+
+
+
+// //Tests
+// var banana = new ProductSelection('banana', 'img/assets/banana.jpg');
+// var bathroom = new ProductSelection('bathroom', 'img/assets/bathroom.jpg');
+// var breakfast = new ProductSelection('breakfast', 'img/assets/breakfast.jpg');
+// var bag = new ProductSelection('bag', 'img/assets/bag.jpg')
+// var boots = new ProductSelection('boots', 'img/assets/boots.jpg')
+// var bubblegum = new ProductSelection('bubblegum', 'img/assets/bubblegum.jpg')
+// var chair = new ProductSelection('chair', 'img/assets/chair.jpg')
+// var cthulhu = new ProductSelection('cthulhu', 'img/assets/cthulhu.jpg')
+// var dogDuck = new ProductSelection('dogDuck', 'img/assets/dog-duck.jpg')
+// var dragon = new ProductSelection('dragon', 'img/assets/dragon.jpg')
+// var pen = new ProductSelection('pen', 'img/assets/pen.jpg')
+// var petSweep = new ProductSelection('petSweep', 'img/assets/pet-sweep.jpg')
+// var scissors = new ProductSelection('scissors', 'img/assets/scissors.jpg')
+// var shark = new ProductSelection('shark', 'img/assets/shark.jpg')
+// var sweep = new ProductSelection('sweep', 'img/assets/sweep.png')
+// var tauntaun = new ProductSelection('tauntaun', 'img/assets/tauntaun.jpg')
+// var unicorn = new ProductSelection('unicorn', 'img/assets/unicorn.jpg')
+// var usb = new ProductSelection('usb', 'img/assets/usb.gif')
+// var waterCan = new ProductSelection('waterCan', 'img/assets/water-can.jpg')
+// var wineGlass = new ProductSelection('wineGlass', 'img/assets/wine-glass.jpg')
 
 
 productsOnPage();
