@@ -126,14 +126,14 @@ function makeChart() {
 
     var namesOfProducts = [];
 
-    for (var i = 0; i < ProductSelection.allProducts.length; i++) {
+    for (var i = 0; i < allProducts.length; i++) {
         namesOfProducts.push(ProductSelection.allProducts[i].productItem);
     }
     console.log(namesOfProducts);
 
 
     var clicks = [];
-    for (i = 0; i < ProductSelection.allProducts.length; i++) {
+    for (i = 0; i < allProducts.length; i++) {
         clicks.push(ProductSelection.allProducts[i].clickCount);
     }
 
@@ -181,7 +181,7 @@ function makeChart() {
 
 
 
-
+makeChart();
 
 
 
